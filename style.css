@@ -1,0 +1,113 @@
+body { /* Added to ensure full page and background */
+    margin: 0;
+    overflow: hidden; /* Prevent body scroll if gallery overfills */
+    background-color: #060010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.gallery-container {
+    position: relative;
+    height: 500px; /* Fixed height for the gallery viewport */
+    width: 100%;
+    max-width: 1000px; /* Optional: limit overall width */
+    overflow: hidden;
+    display: flex; /* To center content horizontally if width < 100% */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gradient overlays to fade out images at the sides */
+.gallery-gradient {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 48px;
+    z-index: 10;
+    pointer-events: none; /* Allows clicks/drags to pass through to the gallery */
+}
+
+.gallery-gradient-left {
+    left: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, #060010 100%);
+}
+
+.gallery-gradient-right {
+    right: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #060010 100%);
+}
+
+/* Container for the 3D content, sets the perspective */
+.gallery-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; /* Defines the 3D perspective */
+    transform-style: preserve-3d; /* Needed for child 3D transforms */
+    width: 100%; /* Take full width of its parent */
+}
+
+/* The element that rotates to create the cylinder effect */
+.gallery-track {
+    display: flex;
+    height: auto;
+    min-height: 200px;
+    justify-content: center;
+    align-items: center;
+    cursor: grab; /* Indicates draggable */
+    transform-style: preserve-3d; /* Crucial for child items to be positioned in 3D */
+    /* Width will be set by JS */
+    /* Transition will be dynamically managed by JS for different animation types */
+}
+
+/* Individual image containers, positioned around the cylinder */
+.gallery-item {
+    position: absolute;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding: 2%; /* Reduced padding to give more effective space to image */
+    box-sizing: border-box; /* Crucial for padding to be included in faceWidth */
+    backface-visibility: hidden; /* Prevents back face of image from showing when rotated past 90deg */
+    /* transform will be set by JS */
+}
+
+/* The image itself */
+.gallery-img {
+    pointer-events: none; /* Prevents dragging the image itself instead of the gallery-track */
+    height: 180px;
+    width: 350px; /* Increased width and height for larger images */
+    border-radius: 15px;
+    border: 3px solid #fff;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect on image */
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-item {
+        padding: 2%; /* Consistent padding */
+    }
+    .gallery-img {
+        height: 100px;
+        width: 200px; /* Adjusted for smaller screens */
+    }
+}
+
+/* Specific adjustment for small screens (based on smBreakpoint from JS) */
+@media (max-width: 640px) { /* Default smBreakpoint, adjust as needed */
+    .gallery-img {
+        height: 80px; /* Even smaller images for very small screens */
+        width: 150px; /* Adjusted for smaller screens */
+    }
+}
