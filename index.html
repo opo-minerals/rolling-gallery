@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gallery-app"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Define your images. Keep this consistent with the JS array or pass it in options.
+        const IMAGES = [
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202715/Opo_mineral_mining_activities_Congo_gmr4f9.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202712/Opo_mineral_large_scale_mining_activities_03_riphjz.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202711/OPO_MINERALS_p3gsq4.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202705/Opo_mineral_large_scale_mining_activities_02_rzmolg.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202710/Opo_mineral_mining_activities_Congo_01_yt7pso.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756202672/Opo_mineral__mining_xzmzxs.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756210926/Opo_mineral_mining_operation_5_eevhkf.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756210926/Opo_mineral_mining_operation_8_kcx6ca.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756210923/Opo_mineral_mining_operation_3_s5eftj.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756210921/Opo_mineral_mining_operation_2_dr49wq.png",
+            "https://res.cloudinary.com/dwi97e2xj/image/upload/v1756210925/Opo_mineral_mining_operation_7_vp2u2c.png",
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryContainer = document.getElementById('gallery-app');
+            new RollingGallery(galleryContainer, {
+                images: IMAGES,
+                autoplay: true,
+                pauseOnHover: true,
+                smBreakpoint: 640 // Defines what 'sm' screen size means (e.g., mobile)
+            });
+        });
+    </script>
+</body>
+</html>
